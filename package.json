@@ -1,6 +1,6 @@
 {
   "name": "kaptuer-with-mongo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "this package work with kaptuer for connect with mongo and help you implement controller faster.",
   "main": "index.js",
   "scripts": {
