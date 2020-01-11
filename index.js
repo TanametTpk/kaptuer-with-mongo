@@ -3,12 +3,13 @@ const createModelLibs = require('./libs/model')
 const getAll = require('require-all')
 const connectDb = require('./libs/connectDb')
 const mongoose = require('mongoose')
+const pluralize = require('pluralize')
 
 const configs = getAll({
     dirname: __dirname + "/configs",
 })
 
-module.exports = (models, dbConfigs, options) => {
+const connect = (models, dbConfigs, options) => {
 
     let services = {}
     let routes = {}
@@ -16,9 +17,10 @@ module.exports = (models, dbConfigs, options) => {
 
     models.map((modelObj) => {
 
-        mongoose.model(modelObj.name, modelObj.model)
-        let modelName = modelObj.name
+        let modelName = pluralize.plural(modelObj.name)
         let permission = modelObj.permission
+
+        mongoose.model(modelName, modelObj.model)
         
         let model = createModelLibs(modelName, permission)
         crudModel = CRUD(model)
@@ -45,9 +47,13 @@ module.exports = (models, dbConfigs, options) => {
     })
 
     return {
-        configs,
         services,
-        routes
+        routes,
+        middlewares:configs.middlewares
     }
 
+}
+
+module.exports = {
+    connect
 }

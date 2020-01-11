@@ -50,7 +50,7 @@ let models = [
 ]
 
 kaptuer.setup({
-    ...kaptuerWithMongo(models, dbConfig, {autoRouting:true, dbVerbose:true}))
+    ...kaptuerWithMongo.connect(models, dbConfig, {autoRouting:true, dbVerbose:true}),
     routes,
     services,
     port: <your port>
