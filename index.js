@@ -8,10 +8,10 @@ const configs = getAll({
     dirname: __dirname + "/configs",
 })
 
-module.exports = (models, dbConfigs) => {
+module.exports = (models, dbConfigs, options) => {
 
     let services = {}
-    connectDb(null, dbConfigs)
+    connectDb(null, dbConfigs, options)
 
     models.map((modelObj) => {
 
