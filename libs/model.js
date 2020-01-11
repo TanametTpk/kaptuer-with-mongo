@@ -73,7 +73,7 @@ module.exports = (modelname, permisstion) => {
 
     }
 
-    module.exports = {
+    return {
         find,
         findManyAndPopulate,
         create,
