@@ -14,7 +14,7 @@ module.exports = (model, payload) => {
             priority: 1,
             path: "/:objectId",
             method: "get",
-            middleware:["getterObjectId", "getterPopulate"],
+            middlewares:["getterObjectId", "getterPopulate"],
         }
     }
 

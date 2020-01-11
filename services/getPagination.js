@@ -13,7 +13,7 @@ module.exports = (model, payload) => {
             path: "/pages/:page",
             priority: 1,
             method: "get",
-            middleware:["getterPagination", "getterPopulate"],
+            middlewares:["getterPagination", "getterPopulate"],
         }
     }
 

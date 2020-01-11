@@ -26,7 +26,7 @@ module.exports = (modelname, permisstion) => {
         if (!skip) skip = 0
         if (!limit) limit = 1000
 
-        let result = Model.find(query , modelPermission.getable.join(",")).limit(limit).skip(skip * limit);
+        let result = Model.find(query , modelPermission.getable.join(" , ")).limit(limit).skip(skip * limit);
 
         if (populate) result = result.populate(populate);
         return result
@@ -36,8 +36,6 @@ module.exports = (modelname, permisstion) => {
     const create = (data) => {
 
         const model = new Model(data);
-        model.setPassword(data.password)
-
         return model.save();
 
     };
@@ -48,11 +46,6 @@ module.exports = (modelname, permisstion) => {
         const currentModel = model;
 
         whiteList.map((key) => {
-
-            if (data[key] === modelPermission.validateKey){
-                currentModel.setPassword(data[key])
-                return
-            }
 
             if (data[key]) currentModel._doc[key] = data[key]
 
