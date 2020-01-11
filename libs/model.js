@@ -2,7 +2,15 @@ module.exports = (modelname, permisstion) => {
 
     const Model = require( "mongoose" ).model( modelname );
 
-    const modelPermission = permisstion
+    let allVar = Object.keys(Model.schema.path)
+    let modelPermission = {
+        getable: allVar,
+        updatable: allVar
+    }
+
+    if (permisstion){
+        modelPermission = permisstion
+    }
 
     const find = (query , populate) => {
 

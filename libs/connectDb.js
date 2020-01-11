@@ -1,6 +1,6 @@
 const mongoose = require( "mongoose" );
 
-var connectWithRetry = function(uri) {
+let connectWithRetry = function(uri) {
   return mongoose.connect(uri ,{ useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true } , (err) => {
 
     if (err) {
@@ -12,7 +12,7 @@ var connectWithRetry = function(uri) {
       }, 1000);
 
     }else{
-      console.log("connected");
+      // console.log("connected");
     }
 
   })
@@ -27,6 +27,6 @@ module.exports = function(app, config) {
     connectWithRetry(uri)
     mongoose.Promise = global.Promise;
 
-	if ( app ) app.set( "mongoose", mongoose );
+	// if ( app ) app.set( "mongoose", mongoose );
 
 }
