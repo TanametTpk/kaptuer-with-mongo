@@ -40,19 +40,21 @@ module.exports = (modelname, permisstion) => {
 
     };
 
-    const update = ( model, data ) => {
+    const update = ( query, data ) => {
 
         const whiteList = modelPermission.updatable
-        const currentModel = model;
+        
+        let updateData = whiteList.reduce((all, key) => {
 
-        whiteList.map((key) => {
+            if (data[key]) return {
+                ...all,
+                [key]:data[key]
+            }
+            else return all
 
-            if (data[key]) currentModel._doc[key] = data[key]
+        },{})
 
-        })
-
-
-        return currentModel.save();
+        return Model.updateOne(query, updateData)
 
     };
 

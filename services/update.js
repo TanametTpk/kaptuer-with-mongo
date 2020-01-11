@@ -3,9 +3,8 @@ module.exports = (model, payload) => {
 
     const update = async (req)=> {
 
-        let target = await model.find({ _id : req._objectId });
-        let updatedObj = await model.update(target , req.body);
-        return await model.wrap( updatedObj )
+        let updatedObj = await model.update({ _id : req._objectId } , req.body);
+        return updatedObj
 
     };
 
