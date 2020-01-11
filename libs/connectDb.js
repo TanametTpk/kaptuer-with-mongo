@@ -1,6 +1,6 @@
 const mongoose = require( "mongoose" );
 
-let connectWithRetry = function(uri) {
+let connectWithRetry = function(uri, option) {
   return mongoose.connect(uri ,{ useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true } , (err) => {
 
     if (err) {
@@ -12,19 +12,19 @@ let connectWithRetry = function(uri) {
       }, 1000);
 
     }else{
-      // console.log("connected");
+      if (option && option.dbVerbose) console.log("connected");
     }
 
   })
 };
 
-module.exports = function(app, config) {
+module.exports = function(app, config, option) {
 
     // assign uri
     let db_auth = (config.username + config.password).length === 0 ? "" : config.username + ":" + config.password + "@";
     let uri =  config.rewrite ? config.rewrite : (config.protocol + "://" + db_auth + config.hostname + "/" + config.database_name);
     
-    connectWithRetry(uri)
+    connectWithRetry(uri, option)
     mongoose.Promise = global.Promise;
 
 	// if ( app ) app.set( "mongoose", mongoose );
