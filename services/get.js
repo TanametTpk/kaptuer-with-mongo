@@ -15,6 +15,6 @@ module.exports = (model, payload) => {
             method: "get",
             middleware:["getQuery", "getterPopulate"],
         }
-    },
+    }
 
 }

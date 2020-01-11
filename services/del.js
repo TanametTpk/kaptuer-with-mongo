@@ -10,12 +10,12 @@ module.exports = (model, payload) => {
     };
 
     return {
-        service: {getPagination},
+        service: {del},
         route:{
             path: "/:objectId",
             method: "delete",
             middlewares: ["getterObjectId"],
         }
-    },
+    }
 
 }

@@ -1,3 +1,5 @@
+const getAll = require('require-all')
+
 const templateServices = getAll({
     dirname: __dirname + "/services",
 })
@@ -7,7 +9,7 @@ module.exports = (model) => {
     let services = {}
     let routes = {}
 
-    templateServices.map((templateService) => {
+    Object.values(templateServices).map((templateService) => {
 
         let { service, route } = templateService(model)
         services = {
@@ -15,9 +17,14 @@ module.exports = (model) => {
             ...service
         }
 
+        let serviceName = Object.keys(service)[0]
+
         routes = {
             ...routes,
-            [Math.random()]:route
+            [serviceName]:{
+                ...route,
+                action:serviceName
+            }
         }
 
     })

@@ -1,4 +1,4 @@
-const CRUD = require('./services/CRUD')
+const CRUD = require('./CRUD')
 const createModelLibs = require('./libs/model')
 const getAll = require('require-all')
 const connectDb = require('./libs/connectDb')
@@ -11,6 +11,7 @@ const configs = getAll({
 module.exports = (models, dbConfigs, options) => {
 
     let services = {}
+    let routes = {}
     connectDb(null, dbConfigs, options)
 
     models.map((modelObj) => {
@@ -20,13 +21,33 @@ module.exports = (models, dbConfigs, options) => {
         let permission = modelObj.permission
         
         let model = createModelLibs(modelName, permission)
-        services[modelName] = CRUD(model)
+        crudModel = CRUD(model)
+
+        services[modelName] = crudModel.services
+
+        if (options && options.autoRouting) {
+
+            let routesKey = Object.keys(crudModel.routes)
+            routes[modelName] =  routesKey.reduce((allRoutes, rkey) => {
+
+                return {
+                    ...allRoutes,
+                    [rkey]:{
+                        ...crudModel.routes[rkey],
+                        controller:modelName
+                    }
+                }
+
+            }, {})
+
+        }
 
     })
 
     return {
         configs,
-        services
+        services,
+        routes
     }
 
 }

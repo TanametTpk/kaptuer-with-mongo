@@ -14,6 +14,6 @@ module.exports = (model, payload) => {
             method: "post",
             middlewares: [],
         }
-    },
+    }
 
 }

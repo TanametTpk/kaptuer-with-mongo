@@ -16,6 +16,6 @@ module.exports = (model, payload) => {
             method: "get",
             middleware:["getterObjectId", "getterPopulate"],
         }
-    },
+    }
 
 }

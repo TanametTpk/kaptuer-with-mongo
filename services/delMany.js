@@ -13,6 +13,6 @@ module.exports = (model, payload) => {
             path: "/",
             method: "delete",
         }
-    },
+    }
 
 }

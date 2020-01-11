@@ -16,6 +16,6 @@ module.exports = (model, payload) => {
             method: "put",
             middlewares: ["getterObjectId"],
         }
-    },
+    }
 
 }
