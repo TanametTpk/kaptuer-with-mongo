@@ -1,0 +1,24 @@
+{
+  "name": "kaptuer-with-mongo",
+  "version": "1.0.0",
+  "description": "this package work with kaptuer for connect with mongo and help you implement controller faster.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanametTpk/kaptuer-with-mongo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TanametTpk/kaptuer-with-mongo/issues"
+  },
+  "homepage": "https://github.com/TanametTpk/kaptuer-with-mongo#readme",
+  "dependencies": {
+    "mongoose": "^5.8.7",
+    "require-all": "^3.0.0"
+  }
+}
