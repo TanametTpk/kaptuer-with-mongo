@@ -1,4 +1,4 @@
-module.exports = (modelname, permisstion) => {
+module.exports = (modelname, permission) => {
 
     const Model = require( "mongoose" ).model( modelname );
 
@@ -8,8 +8,8 @@ module.exports = (modelname, permisstion) => {
         updatable: allVar
     }
 
-    if (permisstion){
-        modelPermission = permisstion
+    if (permission){
+        modelPermission = permission
     }
 
     const find = (query , populate) => {

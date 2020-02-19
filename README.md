@@ -42,10 +42,29 @@ var customer = {
 
 }
 
+var userSchema = Schema({
+
+    name : { type:String, required : true, lowercase : true, trim : true},
+    password : { type:String},
+	provider_id : { type:String },
+	verify: {type:Boolean, default: false}
+
+}, { timestamps: true })
+
+userSchema.index({ email:1 , provider_type:1 } , {unique: true});
+
 let models = [
     {
         model: customer,
         name: "customer"
+    },
+    {
+        model: userSchema,
+        name: "user",
+        permission:{
+            getable:["name","provider_type","verify"],
+            updatable:["name"]
+        }
     }
 ]
 
