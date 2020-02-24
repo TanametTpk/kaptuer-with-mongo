@@ -13,6 +13,7 @@ const connect = (models, dbConfigs, options) => {
 
     let services = {}
     let routes = {}
+    let _models = {}
 
     // connect mongodb
     connectDb(null, dbConfigs, options)
@@ -25,7 +26,10 @@ const connect = (models, dbConfigs, options) => {
         let permission = modelObj.permission
 
         // create mongoose model
-        mongoose.model(modelName, modelObj.model)
+        _models = {
+            ..._models,
+            [modelName]: mongoose.model(modelName, modelObj.model)
+        }
         
         // create CRUD function and REST route with controller
         let model = createModelLibs(modelName, permission)
@@ -59,7 +63,8 @@ const connect = (models, dbConfigs, options) => {
     return {
         services,
         routes,
-        middlewares:configs.middlewares
+        middlewares:configs.middlewares,
+        _models
     }
 
 }
