@@ -11,7 +11,6 @@ module.exports = (model, payload) => {
         service: {getPagination},
         route:{
             path: "/pages/:page",
-            priority: 1,
             method: "get",
             middlewares:["getterPagination", "getQuery", "getterPopulate"],
         }

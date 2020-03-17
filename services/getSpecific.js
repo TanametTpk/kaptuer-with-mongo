@@ -11,7 +11,6 @@ module.exports = (model, payload) => {
     return {
         service: {getSpecific},
         route:{
-            priority: 1,
             path: "/:objectId",
             method: "get",
             middlewares:["getterObjectId", "getterPopulate"],

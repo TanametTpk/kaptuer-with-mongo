@@ -13,7 +13,7 @@ module.exports = (model, payload) => {
         route:{
             path: "/",
             method: "get",
-            middlewares:["getQuery", "getQuery", "getterPopulate"],
+            middlewares:["getQuery", "getterPopulate"],
         }
     }
 
