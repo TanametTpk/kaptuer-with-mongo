@@ -33,6 +33,12 @@ module.exports = (modelname, permission) => {
 
     }
 
+    const count = (query) => {
+
+        return Model.count(query)
+
+    }
+
     const create = (data) => {
 
         const model = new Model(data);
@@ -82,7 +88,8 @@ module.exports = (modelname, permission) => {
         update,
         deleteObj,
         wrap,
-        deleteObjMany
+        deleteObjMany,
+        count,
     };
 
 
