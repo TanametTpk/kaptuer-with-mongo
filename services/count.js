@@ -3,7 +3,11 @@ module.exports = (model, payload) => {
 
     const count = async (req)=> {
 
-        return await model.count(req.query)
+        let count = await model.count(req.query)
+
+        return {
+            count
+        }
 
     };
 

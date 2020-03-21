@@ -35,7 +35,7 @@ module.exports = (modelname, permission) => {
 
     const count = (query) => {
 
-        return Model.count(query)
+        return Model.countDocuments(query)
 
     }
 

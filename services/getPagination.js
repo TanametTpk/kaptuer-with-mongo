@@ -7,7 +7,7 @@ module.exports = (model, payload) => {
         let promiseCount = model.count(req.query)
 
         let [items, total] = await Promise.all([promiseItems, promiseCount])
-        let hasNext = !(items.length < req._size)
+        let hasNext = (items.length + (req._page + 1) * req._size) < total
 
         return {
             items,
